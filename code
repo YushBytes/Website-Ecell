@@ -1,0 +1,71 @@
+# -----------------------------
+# Student Marks Management System
+# -----------------------------
+
+# Structure: List of dictionaries
+students = [
+    {'roll_no': 1, 'name': 'Alice', 'subject': 'Math', 'marks': 88},
+    {'roll_no': 2, 'name': 'Bob', 'subject': 'Math', 'marks': 75},
+    {'roll_no': 3, 'name': 'Charlie', 'subject': 'Math', 'marks': 92},
+    {'roll_no': 4, 'name': 'David', 'subject': 'Math', 'marks': 68},
+    {'roll_no': 5, 'name': 'Eva', 'subject': 'Math', 'marks': 81}
+]
+
+# -----------------------------
+# Functions
+# -----------------------------
+
+def display_all_students():
+    print("\n--- All Student Records ---")
+    print(f"{'Roll No':<8} {'Name':<10} {'Subject':<10} {'Marks':<5}")
+    print("-" * 40)
+    for student in students:
+        print(f"{student['roll_no']:<8} {student['name']:<10} {student['subject']:<10} {student['marks']:<5}")
+    print("-" * 40)
+
+def find_topper():
+    if not students:
+        print("No student records available.")
+        return
+
+    topper = max(students, key=lambda x: x['marks'])
+    print("\n--- Topper of the Class ---")
+    print(f"Roll No: {topper['roll_no']}, Name: {topper['name']}, Marks: {topper['marks']}")
+
+def calculate_average():
+    if not students:
+        print("No student records available.")
+        return
+
+    total_marks = sum(student['marks'] for student in students)
+    average = total_marks / len(students)
+    print(f"\n--- Class Average Marks ---\nAverage Marks: {average:.2f}")
+
+# -----------------------------
+# Main Program Menu
+# -----------------------------
+
+def main():
+    while True:
+        print("\n===== Student Marks Manager =====")
+        print("1. Display All Students")
+        print("2. Find Topper")
+        print("3. Calculate Average Marks")
+        print("4. Exit")
+
+        choice = input("Enter your choice (1-4): ")
+
+        if choice == '1':
+            display_all_students()
+        elif choice == '2':
+            find_topper()
+        elif choice == '3':
+            calculate_average()
+        elif choice == '4':
+            print("Exiting program. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please select 1-4.")
+
+if __name__ == "__main__":
+    main()
